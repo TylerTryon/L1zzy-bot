@@ -1,4 +1,3 @@
-#include "BLEhandler.h"
 #include "MotorDriver.h"
 #include "Scheduler.h"
 #include "StateMachine.h"
@@ -10,7 +9,6 @@ unsigned long LagClock;
 // Task list has to be defined outside the startup function
 Task SystemTasks[] = {
     Task(&SetMotors, 100),
-    Task(&BLEtask, 100),
     Task(&LockTick, 1000),
     Task(&Wander, 1000)
   };
@@ -24,9 +22,6 @@ void setup() {
 
   digitalWrite(L_MOTOR_DRIVER_PIN, LOW);
   digitalWrite(R_MOTOR_DRIVER_PIN, LOW);
-
-  // Initialize the BLE
-  BLEinit();
 
   // Set the lag clock
   LagClock = millis();
