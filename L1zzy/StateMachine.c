@@ -1,6 +1,7 @@
 /* The state machine that determines what each part of the robot will be doing at any time
 */
 
+#include "Sonar.h"
 #include "StateMachine.h"
 #include "Utilities.h"
 
@@ -46,13 +47,22 @@ void LockTick()
 // Where will L1zzy go? Nobody knows
 void Wander(void)
 {
-    // If the state is locked, do not change the state
-    if (lockout == 0)
+    // If L1zzy is too close to an object, then it should turn away
+    if (GetDistance() > 10)
     {
-        int randState = randomInt(LAST_STATE);
-        int randTime = randomInt(10);
+        // If the state is locked, do not change the state
+        if (lockout == 0)
+        {
+            int randState = randomInt(LAST_STATE);
+            int randTime = randomInt(10);
 
-        SetCurrentState(randState);
-        SetLock(randTime);
+            SetCurrentState(randState);
+            SetLock(randTime);
+        }
+    }
+    else
+    {
+        SetCurrentState(SLEEP);
+        SetLock(5);
     }
 }

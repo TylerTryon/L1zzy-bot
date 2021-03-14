@@ -7,8 +7,8 @@ it sets the states for each wheel motor.
 extern "C" {
 #endif
 
-#define L_MOTOR_DRIVER_PIN 5
-#define R_MOTOR_DRIVER_PIN 6
+#define L_MOTOR_DRIVER_PIN 11
+#define R_MOTOR_DRIVER_PIN 10
 
 // If LOW or HIGH are undefined, define them
 #ifndef LOW
